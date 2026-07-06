@@ -12,6 +12,9 @@
 # Level : PLMSTART_AUTO_LEVEL   (default prd)
 # Mode  : V5START_AUTO_MODE     (default 1 = CATIA; 3 = Enovia, 5 = DMU)
 
+# Hide the default wish window so nothing flashes before/while sourcing.
+catch {wm withdraw .}
+
 set level prd
 if {[info exists env(PLMSTART_AUTO_LEVEL)] && $env(PLMSTART_AUTO_LEVEL) ne ""} {
     set level [string tolower $env(PLMSTART_AUTO_LEVEL)]
@@ -35,7 +38,10 @@ set sourced ""
 foreach f $candidates {
     if {[file readable $f]} {
         set argv0 $f
+        # NOTE: Tcl does not auto-update argc when argv is reassigned.
+        # V5StartInt17.tcl validates the Level arg via argc, so set both.
         set argv [list $level $root_data]
+        set argc [llength $argv]
         if {[catch {source $f} err]} {
             puts stderr "Error sourcing $f: $err"
             continue
