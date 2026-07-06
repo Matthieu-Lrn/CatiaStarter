@@ -39,6 +39,9 @@ REM V5StartApp17.tclsh READS these from the environment instead of computing the
 set "USER_V5_PROFILE=DESIGN"       & REM your CATIA profile (DESIGN is the default; change if yours differs)
 set "V5START_USERID=%USERNAME%"
 set "V5START_LOCID=%A7%"
+set "CUSTONAME=%A12%"              & REM plugin/customization name (iCFGv50r00)
+set "CUSTO_LOCAL_DEST=c:\temp\ba"  & REM local ba custo cache root
+set "CompanyIdentity=BOMBARDIER"
 
 if not exist "%APP%" (
     echo ERROR: cannot find %APP%
