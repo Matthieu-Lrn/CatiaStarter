@@ -34,6 +34,12 @@ set "A13=ON"            & REM custo schema
 set "A14=ON"            & REM custo interface
 set "A15=ON"            & REM custo user-exit
 
+REM --- env vars the PLMStart GUI normally exports before calling the backend ---
+REM V5StartApp17.tclsh READS these from the environment instead of computing them.
+set "USER_V5_PROFILE=DESIGN"       & REM your CATIA profile (DESIGN is the default; change if yours differs)
+set "V5START_USERID=%USERNAME%"
+set "V5START_LOCID=%A7%"
+
 if not exist "%APP%" (
     echo ERROR: cannot find %APP%
     echo Make sure the I: drive is mapped.
