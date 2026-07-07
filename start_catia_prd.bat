@@ -14,7 +14,7 @@ REM ============================================================================
 setlocal
 
 set "TCLSH=tclsh"
-set "APP=I:\prd\cecc\bin\V5StartApp17.tclsh"
+set "APP=I:\V5Start\5.0.1\bin\V5StartApp17.tclsh"
 
 REM --- the 16 args, in order (argv0..argv15) ---
 set "A0=V5R21"          & REM Catia version
