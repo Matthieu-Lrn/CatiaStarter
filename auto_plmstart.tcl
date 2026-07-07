@@ -23,11 +23,20 @@ if {![file readable $REAL_GUI]} {
     exit 2
 }
 
-# The real script derives its script/lib/env dirs from argv0, and reads the
-# level from [lindex $argv 0]. Set both before sourcing.
+# PLMStart.Chooser normally launches V5StartInt17.tcl with THREE args:
+#   <level> <root_data> <root_data_csv>
+# We skip the Chooser, so supply them here.
+set root_data "I:/$level"
+set rootdfile "I:/V5Start/5.0.1/env/root_data_mtl.csv"
+if {![file readable $rootdfile]} {
+    set rootdfile "I:/V5Start/5.0.1/env/root_data_all.csv"
+}
+
+# The real script derives its script/lib/env dirs from argv0. Set argv0 +
+# argv/argc before sourcing so its own arg parsing sees the level/root_data.
 set argv0 $REAL_GUI
-set argv  [list $level]
-set argc  1
+set argv  [list $level $root_data $rootdfile]
+set argc  [llength $argv]
 
 # Keep the default window hidden from the very start.
 catch {wm withdraw .}
